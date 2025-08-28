@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ===============================
+   RESET GERAL
+   =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* ===============================
+   NAVBAR
+   =============================== */
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+
+    /* aparece suavemente com atraso */
+    visibility: hidden;
+    opacity: 0;
+    animation: mostrar-conteudo 1.5s linear forwards; 
+    animation-delay: 1.2s;
+}
+
+/* animação de fade-in */
+@keyframes mostrar-conteudo {
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+/* ===============================
+   LOGO COM EFEITO PISCAR
+   =============================== */
+.navegacao .logo {
+    font-size: 30px;
+    font-weight: 200;
+    color: #7cf03d;
+    animation: piscar 2s infinite ease-in-out;
+}
+
+@keyframes piscar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; } /* piscar suave, sem desaparecer totalmente */
+}
+
+/* ===============================
+   LINKS DA NAV
+   =============================== */
+.navegacao ul {
+    display: flex;
+}
+
+.navegacao ul li {
+    list-style: none;
+    margin-left: 35px;
+    position: relative;
+}
+
+.navegacao ul li a {
+    position: relative;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    transition: color .4s;
+}
+
+/* underline escondido no início */
+.navegacao ul li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px; 
+    width: 0%;
+    height: 2px;
+    background: #7cf03d;
+    transition: width .4s ease;
+}
+
+/* Hover: underline aparece da esquerda para a direita */
+.navegacao ul li:hover a::after {
+    width: 100%;
+}
+
+/* Apenas o link activo (Ex: "Início") começa sublinhado */
+.navegacao ul li.activo a::after {
+    width: 100%;
+}
+
+/* ===============================
+   SECÇÃO INÍCIO
+   =============================== */
+.inicio {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    height: 100vh;
+    padding: 60px 9% 0;
+    color: #fff;
+
+    /* fade-in atrasado */
+    visibility: hidden;
+    opacity: 0;
+    animation: mostrar-conteudo 1.5s linear forwards;
+    animation-delay: 1.6s;
+}
+
+/* títulos principais */
+.info-inicio h1 {
+    font-size: 55px;
+}
+
+/* subtítulo (ex: “Especialista em…”) */
+.info-inicio h2 {
+    display: inline-block;
+    font-size: 32px;
+    margin-top: -10px;
+}
+
+/* efeito de texto animado dentro do span */
+.info-inicio h2 span {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: .7px #7cf03d;
+    animation: mostrar-texto 16s linear infinite;
+    animation-delay: calc(-4s * var(--i));
+}
+
+@keyframes mostrar-texto {
+    25%, 100% {
+        display: none;
+    }
+}
+
+/* animação de preenchimento do texto */
+.info-inicio h2 span::before {
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    border-right: 2px solid #7cf03d;
+    color: #7cf03d;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: preencher-texto 4s linear infinite;
+} 
+
+@keyframes preencher-texto {
+    10%, 100% { width: 0; }
+    70%, 90% { width: 100%; }
+}
+
+/* parágrafo */
+.info-inicio p {
+    font-size: 16px;
+    margin: 18px 0 25px;
+}
+
+/* ===============================
+   BOTÕES E REDES SOCIAIS
+   =============================== */
+.botoes-sociais {
+    display: flex;
+    align-items: center;
+}
+
+.botao {
+    display: inline-block;
+    padding: 10px 30px;
+    background: #7cf03d;
+    border: 2px solid #7cf03d;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #7cf03d;
+    font-size: 16px;
+    color: #1f242d;
+    font-weight: 600;
+    transition: .4s;
+}
+
+.botao:hover {
+    background: transparent; 
+    color: #7cf03d;
+    box-shadow: none;
+}
+
+.sociais {
+    margin-left: 20px;
+}
+
+.sociais a {
+    display: inline-flex;
+    padding: 8px;
+    border: 2px solid #7cf03d;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #7cf03d;
+    margin: 0 8px;
+    transition: .5s;
+}
+
+.sociais a:hover {
+    background: #7cf03d;
+    color: #1f242d;
+    box-shadow: 0 0 10px #7cf03d;
+}
+
+/* ===============================
+   IMAGEM DE PERFIL
+   =============================== */
+.imagem-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* moldura circular com borda animada */
+.caixa-img {
+    position: relative;
+    width: 32vw;
+    height: 32vw;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* efeito de borda giratória */
+.caixa-img::before,
+.caixa-img::after {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent, transparent, transparent, #7cf03d);
+    transform: rotate(0deg);
+    animation: rodar-borda 10s linear infinite;
+}
+
+.caixa-img::after {
+    animation-delay: -5s;
+}
+
+@keyframes rodar-borda {
+    100% { transform: rotate(360deg); }
+}
+
+/* área circular que contém a imagem */
+.item-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #1f242d;
+    border-radius: 50%;
+    border: .1px solid #1f242d;
+    display: flex;
+    justify-content: center;
+    z-index: 1;  
+    overflow: hidden;
+}
+
+/* foto de perfil ajustada e centralizada */
+.item-img img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* cobre sem deformar */
+    object-position: center top; /* foca no rosto */
+    border-radius: 50%;     /* mantém formato circular */
+}
+
+/* legenda da foto */
+.titulo-foto {
+    font-size: 14px;
+    font-weight: 300;
+    color: #7cf03d;
+}
+
+/* ===============================
+   ANIMAÇÃO DE BARRAS DE ENTRADA
+   =============================== */
+.animacao-barras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: -1;
+}
+
+.animacao-barras .barra {
+    width: 100%;
+    height: 100%;
+    background: #1f242d;
+    transform: translateY(-100%);
+    animation: mostrar-barras .5s ease-in-out forwards;
+    animation-delay: calc(.1s * var(--i));
+}
+
+@keyframes mostrar-barras {
+    100% { transform: translateY(0%); }
+}
+
+
+
+
